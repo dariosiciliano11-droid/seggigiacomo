@@ -12,6 +12,7 @@ interface ListVotes {
   forzaItalia: number;
   sanVitoViva: number;
   insiemePerSanVito: number;
+  primaSanVito: number;
 }
 
 interface SeatResult {
@@ -26,6 +27,7 @@ const LIST_CONFIG: Record<keyof ListVotes, { name: string; color: string }> = {
   forzaItalia: { name: 'Forza Italia', color: 'bg-blue-400' },
   sanVitoViva: { name: 'San Vito Viva', color: 'bg-yellow-500' },
   insiemePerSanVito: { name: 'Insieme per San Vito', color: 'bg-red-500' },
+  primaSanVito: { name: 'Prima San Vito', color: 'bg-emerald-600' },
 };
 
 export default function App() {
@@ -34,6 +36,7 @@ export default function App() {
     forzaItalia: 0,
     sanVitoViva: 0,
     insiemePerSanVito: 0,
+    primaSanVito: 0,
   });
 
   const handleVoteChange = (key: keyof ListVotes, value: string) => {
@@ -89,6 +92,7 @@ export default function App() {
       forzaItalia: 0,
       sanVitoViva: 0,
       insiemePerSanVito: 0,
+      primaSanVito: 0,
     });
   };
 
@@ -110,7 +114,7 @@ export default function App() {
         </header>
 
         {/* Inputs */}
-        <section className="grid grid-cols-1 md:grid-cols-4 gap-6 p-8 bg-white rounded-3xl shadow-sm border border-neutral-200">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 p-8 bg-white rounded-3xl shadow-sm border border-neutral-200">
           {Object.entries(LIST_CONFIG).map(([key, config]) => (
             <div key={key} className="space-y-3">
               <label className="block text-sm font-semibold text-neutral-700 tracking-tight" htmlFor={key}>
@@ -129,7 +133,7 @@ export default function App() {
               </div>
             </div>
           ))}
-          <div className="md:col-span-4 flex items-center justify-between pt-4 border-t border-neutral-100">
+          <div className="col-span-full flex flex-col sm:flex-row gap-4 items-center justify-between pt-4 border-t border-neutral-100">
             <div className="flex items-center gap-2 text-neutral-500">
               <Users size={18} />
               <span className="text-sm font-medium">Totale voti coalizione: <span className="font-mono font-bold text-neutral-900 text-lg ml-1">{totalVotes.toLocaleString()}</span></span>
